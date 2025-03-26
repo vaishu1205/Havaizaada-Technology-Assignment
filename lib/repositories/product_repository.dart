@@ -5,7 +5,7 @@ import '../models/product_model.dart';
 class ProductRepository {
   final String apiUrl = 'https://dummyjson.com/products';
 
-  // Fetch products with pagination
+
   Future<List<Product>> fetchProducts({int limit = 10, int skip = 0}) async {
     try {
       final response = await http.get(Uri.parse('$apiUrl?limit=$limit&skip=$skip'));
@@ -16,7 +16,6 @@ class ProductRepository {
         if (data.containsKey('products')) {
           List<dynamic> productsJson = data['products'];
 
-          // Convert JSON to Product model list
           return productsJson.map((json) => Product.fromJson(json)).toList();
         } else {
           throw Exception('Invalid API response format');
