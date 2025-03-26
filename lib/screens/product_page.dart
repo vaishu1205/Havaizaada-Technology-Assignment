@@ -37,7 +37,6 @@ class ProductPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Search Bar
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextField(
@@ -50,8 +49,6 @@ class ProductPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Hot Offer Banner
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Container(
@@ -66,7 +63,7 @@ class ProductPage extends StatelessWidget {
                           Text(
                             "🔥 Limited Time Offer: Up to 50% Off!",
                             style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -76,10 +73,7 @@ class ProductPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
-                  // Product Grid
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: const Text(
@@ -90,7 +84,6 @@ class ProductPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -99,7 +92,7 @@ class ProductPage extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.9, 
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                     ),
@@ -152,41 +145,37 @@ class _ProductCardState extends State<ProductCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Product Image
-              ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(20)),
-                child: Image.network(
-                  widget.product.image,
-                  height: 130,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+              Flexible(
+                child: ClipRRect(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(20)),
+                  child: Image.network(
+                    widget.product.image,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Product Name
                     Text(
                       widget.product.name,
                       style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 13,
                         fontWeight: FontWeight.bold,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 5),
-
-                    // Discounted and Original Price with Discount Badge
                     Row(
                       children: [
                         Text(
                           '\$${widget.product.discountedPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: Colors.purple,
                             fontWeight: FontWeight.bold,
                           ),
@@ -204,7 +193,7 @@ class _ProductCardState extends State<ProductCard> {
                             child: Text(
                               'Save ${widget.product.discountedPrice.toStringAsFixed(0)}%',
                               style: const TextStyle(
-                                fontSize: 10,
+                                fontSize: 8,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -218,8 +207,6 @@ class _ProductCardState extends State<ProductCard> {
             ],
           ),
         ),
-
-        // Favorite Icon
         Positioned(
           top: 10,
           left: 10,
@@ -235,8 +222,6 @@ class _ProductCardState extends State<ProductCard> {
             ),
           ),
         ),
-
-        // Add to Cart Icon
         Positioned(
           top: 10,
           right: 10,
@@ -261,3 +246,4 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+
